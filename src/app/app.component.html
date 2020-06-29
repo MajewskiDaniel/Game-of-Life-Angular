@@ -1,20 +1,44 @@
 <div class="home">
   <h1>Game of Life</h1>
 </div>
-<div class="inputs">
-  <span>Board height:</span>
-  <input
-    class="boardHeight"
-    type="number"
-    (input)="onInputHeight($event.target.value)"
-  />
-  <span>Board width:</span>
-  <input
-    class="boardWidth"
-    type="number"
-    (input)="onInputWidth($event.target.value)"
-  />
+<div class="boardGenerator">
+  <div>
+    <span>Board height:</span>
+    <input
+      class="boardHeight"
+      type="number"
+      (input)="onInputHeight($event.target.value)"
+    />
+  </div>
+  <div>
+    <span>Board width:</span>
+    <input
+      class="boardWidth"
+      type="number"
+      (input)="onInputWidth($event.target.value)"
+    />
+  </div>
   <button class="generateButton" (click)="onGenerate()">
     Generate board
   </button>
+</div>
+<div class="gameInputs" *ngIf="board.length > 0">
+  <span>Number of generations:</span>
+  <input
+    class="numOfGens"
+    type="number"
+    (input)="onInputGens($event.target.value)"
+  />
+  <br />
+  <span>Set living cells and press play</span>
+  <button class="play" (click)="onPlay()">Play</button>
+</div>
+<div class="board" *ngIf="board.length > 0">
+  <div class="row" *ngFor="let row of board">
+    <div
+      class="column"
+      *ngFor="let column of row"
+      (click)="onCellClick(row, column)"
+    ></div>
+  </div>
 </div>

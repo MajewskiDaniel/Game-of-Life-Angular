@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+.board {
+  display: flex;
+  flex-direction: column;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  height: 20px;
+  width: fit-content;
+  border: 1px solid black;
+}
+.column {
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+}
+.living {
+  background-color: black;
+}

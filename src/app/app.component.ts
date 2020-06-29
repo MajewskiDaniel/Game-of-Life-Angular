@@ -14,16 +14,16 @@ export class AppComponent {
     height: 0,
     width: 0,
   };
+  public board = [];
+  public numOfGenerations = 0;
 
   constructor(private boardService: BoardService) {}
   ngOnInit() {}
   onInputWidth(value: number) {
     this.boardDimensions.width = value;
-    console.log(value);
   }
   onInputHeight(value: number) {
     this.boardDimensions.height = value;
-    console.log(value);
   }
   onGenerate() {
     this.boardService.createBoard(
@@ -31,5 +31,13 @@ export class AppComponent {
       this.boardDimensions.width
     );
     console.table(this.boardService.board);
+    this.board = this.boardService.board;
+  }
+  onInputGens(numOfGenerations) {
+    this.numOfGenerations = numOfGenerations;
+  }
+  onPlay() {}
+  onCellClick(row, column) {
+    this.board[row][column] = 1; //need to toggle 1/0 and class .living
   }
 }
