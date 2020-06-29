@@ -1,5 +1,4 @@
 import { Component } from "@angular/core";
-// import { GameService } from "./services/game.service";
 import { BoardService } from "./services/board.service";
 
 @Component({
@@ -30,14 +29,17 @@ export class AppComponent {
       this.boardDimensions.height,
       this.boardDimensions.width
     );
-    console.table(this.boardService.board);
+
     this.board = this.boardService.board;
   }
   onInputGens(numOfGenerations) {
     this.numOfGenerations = numOfGenerations;
   }
-  onPlay() {}
-  onCellClick(row, column) {
-    this.board[row][column] = 1; //need to toggle 1/0 and class .living
+  onPlay() {
+    this.boardService.startGame(this.numOfGenerations);
+    this.board = this.boardService.gameBoard;
+  }
+  onCellClick(i, j) {
+    this.boardService.toggleCell(i, j);
   }
 }

@@ -30,15 +30,16 @@
     (input)="onInputGens($event.target.value)"
   />
   <br />
-  <span>Set living cells and press play</span>
+  <span>Set living cells on the board and press play</span>
   <button class="play" (click)="onPlay()">Play</button>
 </div>
 <div class="board" *ngIf="board.length > 0">
-  <div class="row" *ngFor="let row of board">
+  <div class="row" *ngFor="let row of board; let i = index">
     <div
       class="column"
-      *ngFor="let column of row"
-      (click)="onCellClick(row, column)"
+      [class.living]="column === 1"
+      *ngFor="let column of row; let j = index"
+      (click)="onCellClick(i, j)"
     ></div>
   </div>
 </div>
