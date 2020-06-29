@@ -4,21 +4,19 @@ import { Injectable } from "@angular/core";
   providedIn: "root",
 })
 export class BoardService {
-  constructor(width: number, height: number = width) {
-    this.width = width;
-    this.height = height;
-    this.board = [];
-  }
-  createBoard() {
-    for (let i = 0; i < this.height; i++) {
-      this.board[i] = new Array(this.width);
+  public board = [];
+
+  constructor() {}
+  createBoard(height, width) {
+    for (let i = 0; i < height; i++) {
+      this.board[i] = new Array(width);
     }
-    this.fillTheBoard();
+    this.fillTheBoard(height, width);
     return this.board;
   }
-  fillTheBoard() {
-    for (let i = 0; i < this.height; i++) {
-      for (let j = 0; j < this.width; j++) {
+  fillTheBoard(height, width) {
+    for (let i = 0; i < height; i++) {
+      for (let j = 0; j < width; j++) {
         this.board[i][j] = 0;
       }
     }

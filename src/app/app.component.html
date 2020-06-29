@@ -3,12 +3,18 @@
 </div>
 <div class="inputs">
   <span>Board height:</span>
-  <input class="boardHeight" type="number" [(ngModel)]="board.height" />
-  {{ board.height }}
+  <input
+    class="boardHeight"
+    type="number"
+    (input)="onInputHeight($event.target.value)"
+  />
   <span>Board width:</span>
-  <input class="boardWidth" type="number" [(ngModel)]="board.width" />
-  {{ board.width }}
-  <button class="generateButton" (click)="onGenerate(board)">
+  <input
+    class="boardWidth"
+    type="number"
+    (input)="onInputWidth($event.target.value)"
+  />
+  <button class="generateButton" (click)="onGenerate()">
     Generate board
   </button>
 </div>
