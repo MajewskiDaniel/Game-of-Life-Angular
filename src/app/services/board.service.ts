@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import * as Board from "./lifeboard";
 import * as Game from "./game";
-import { delay, tap } from "rxjs/operators";
+import { tap } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -47,10 +47,11 @@ export class BoardService {
     const game = new Game(this.board, this.livingCells, generationLimit);
     game.startTheGame();
     game.board$
-      .pipe(
-        //delay(500),
-        tap((board) => console.table(board))
-      )
+      .pipe
+      //delay(500),
+      // tap((board) => console.table(board))
+      ()
       .subscribe((board) => (this.gameBoard = board));
   }
+  // endGame() {}
 }

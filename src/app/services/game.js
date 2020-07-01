@@ -52,8 +52,8 @@ class GameOfLife {
       });
       this.livingCells = this.initialCells;
       this.initialFlag = false;
-      console.log(`Generation: ${this.numberOfGenerations}`);
-      console.table(this.board);
+      // console.log(`Generation: ${this.numberOfGenerations}`);
+      // console.table(this.board);
     }
   }
   checkLivingCells() {
@@ -128,7 +128,13 @@ class GameOfLife {
   }
   refreshLivingCells() {
     this.livingCells.length = 0;
-    this.livingCells = [...this.emergingCells, ...this.survivingCells];
+    for (let row = 0; row < this.board.length; row++) {
+      for (let column = 0; column < this.board[row].length; column++) {
+        if (this.board[row][column] === 1) {
+          this.livingCells.push([row, column]);
+        }
+      }
+    }
     this.emergingCells.length = 0;
     this.survivingCells.length = 0;
   }
@@ -139,8 +145,7 @@ class GameOfLife {
     );
   }
   endGame() {
-    console.log(`Thank You for playing Game of Life.
-    You have played for ${this.numberOfGenerations} generations`);
+    this.endGameFlag = true;
   }
 }
 

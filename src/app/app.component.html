@@ -23,15 +23,16 @@
   </button>
 </div>
 <div class="gameInputs" *ngIf="board.length > 0">
-  <span>Number of generations:</span>
-  <input
+  <!-- <span>Number of generations:</span> -->
+  <!-- <input
     class="numOfGens"
     type="number"
     (input)="onInputGens($event.target.value)"
-  />
+  /> -->
   <br />
   <span>Set living cells on the board and press play</span>
   <button class="play" (click)="onPlay()">Play</button>
+  <button class="reset" (click)="onGenerate()">Reset</button>
 </div>
 <div class="board" *ngIf="board.length > 0">
   <div class="row" *ngFor="let row of board; let i = index">
