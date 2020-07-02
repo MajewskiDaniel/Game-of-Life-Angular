@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="home">
-    <h1>Game of Life v0.7</h1>
-    <h2>by Daniel Majewski</h2>
+    <h1>Game of Life</h1>
+    <p style="text-align: right;">v 0.7</p>
     <div class="description">
       <h3>Game description</h3>
       <span *ngIf="showDescr"
@@ -13,35 +13,35 @@
         One interacts with the Game of Life by creating an initial configuration
         and observing how it evolves.</span
       >
-      <br />
       <button class="descrBtn" (click)="onDescriptionBtn()">
         {{ descrBtn }}
       </button>
     </div>
+    <div class="gameRules">
+      <h3>Game rules</h3>
+      <span *ngIf="showRules"
+        >The universe of the Game of Life is an infinite two-dimensional
+        orthogonal grid of square cells, each of which is in one of two possible
+        states, live or dead. Every cell interacts with its eight neighbours,
+        which are the cells that are directly horizontally, vertically, or
+        diagonally adjacent. At each step in time, the following transitions
+        occur: <br />- Any live cell with fewer than two live neighbours dies
+        (referred to as underpopulation or exposure). <br />- Any live cell with
+        more than three live neighbours dies (referred to as overpopulation or
+        overcrowding). <br />- Any live cell with two or three live neighbours
+        lives, unchanged, to the next generation. <br />- Any dead cell with
+        exactly three live neighbours will come to life. <br />The initial
+        pattern constitutes the 'seed' of the system. The first generation is
+        created by applying the above rules simultaneously to every cell in the
+        seed — births and deaths happen simultaneously, and the discrete moment
+        at which this happens is sometimes called a tick. (In other words, each
+        generation is a pure function of the one before.) The rules continue to
+        be applied repeatedly to create further generations.</span
+      >
+      <button class="rulesBtn" (click)="onRulesBtn()">{{ rulesBtn }}</button>
+    </div>
   </div>
-  <div class="gameRules">
-    <h3>Game rules</h3>
-    <span *ngIf="showRules"
-      >The universe of the Game of Life is an infinite two-dimensional
-      orthogonal grid of square cells, each of which is in one of two possible
-      states, live or dead. Every cell interacts with its eight neighbours,
-      which are the cells that are directly horizontally, vertically, or
-      diagonally adjacent. At each step in time, the following transitions
-      occur: <br />- Any live cell with fewer than two live neighbours dies
-      (referred to as underpopulation or exposure). <br />- Any live cell with
-      more than three live neighbours dies (referred to as overpopulation or
-      overcrowding). <br />- Any live cell with two or three live neighbours
-      lives, unchanged, to the next generation. <br />- Any dead cell with
-      exactly three live neighbours will come to life. <br />The initial pattern
-      constitutes the 'seed' of the system. The first generation is created by
-      applying the above rules simultaneously to every cell in the seed — births
-      and deaths happen simultaneously, and the discrete moment at which this
-      happens is sometimes called a tick. (In other words, each generation is a
-      pure function of the one before.) The rules continue to be applied
-      repeatedly to create further generations.</span
-    >
-    <button class="rulesBtn" (click)="onRulesBtn()">{{ rulesBtn }}</button>
-  </div>
+
   <div class="boardGenerator">
     <div class="boardWidth">
       <span>Set board width:</span>
@@ -57,28 +57,22 @@
   </div>
   <div class="gameInputs" *ngIf="board.length > 0">
     <div class="numOfGens">
-      <span>Number of generations (0 to infinite):</span>
-      <input
-        type="number"
-        value="0"
-        (input)="onInputGens($event.target.value)"
-      />
+      <span>Number of generations (set 0 to infinite):</span>
+      <input type="number" [(ngModel)]="generationLimit" />
       <br />
     </div>
     <div class="gameSpeed">
-      <span>Single generation length in seconds:</span>
-      <input
-        type="number"
-        value="0.5"
-        (input)="onInputSpeed($event.target.value)"
-      />
+      <span>Single generation length in miliseconds:</span>
+      <input type="number" [(ngModel)]="gameSpeed" />
       <br />
     </div>
     <div class="startSection">
-      <span>Set living cells on the board and press Start</span>
-      <button class="play" (click)="onStart()">Start</button>
+      <br />
+      <span class="bold">Set living cells on the board and press Start</span
+      ><br />
+      <button class="startBtn" (click)="onStart()">Start</button>
       <!-- <button class="pause" (click)="onPause()">Pause</button> -->
-      <button class="reset" (click)="onGenerate()">Reset</button>
+      <button class="resetBtn" (click)="onGenerate()">Stop</button>
     </div>
   </div>
 
@@ -92,4 +86,7 @@
       ></div>
     </div>
   </div>
+  <footer>
+    made by Daniel Majewski
+  </footer>
 </div>

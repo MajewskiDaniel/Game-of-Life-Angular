@@ -11,11 +11,6 @@ h1 {
   font-size: 50px;
   margin: 30px auto 0;
 }
-h2 {
-  text-align: center;
-  font-size: 12px;
-  margin-bottom: 20px;
-}
 h3 {
   margin: 15px;
 }
@@ -34,7 +29,9 @@ h3 {
 }
 .descrBtn,
 .rulesBtn,
-.genBtn {
+.genBtn,
+.startBtn,
+.resetBtn {
   width: 150px;
 }
 
@@ -63,6 +60,7 @@ button {
   background-color: white;
   font-size: 16px;
   padding: 5px;
+  margin-top: 20px;
   border: 1px solid black;
   border-radius: 18px;
   background-color: #ebedf9;
@@ -73,9 +71,14 @@ button {
   border: 1px solid black;
   width: 600px;
   margin-top: 10px;
+  margin-bottom: 10px;
   padding: 20px;
   background-color: white;
   border-radius: 7px;
+}
+.startBtn,
+.resetBtn {
+  margin: 20px 20px 0 0;
 }
 .wrapper {
   display: flex;
@@ -83,6 +86,11 @@ button {
   align-items: center;
   background-color: #ebedf9;
 }
+.bold {
+  font-weight: bold;
+}
+
+/* -------------------- board styles ------------------- */
 .board {
   display: flex;
   flex-direction: column;
@@ -103,4 +111,18 @@ button {
 }
 .living {
   background-color: black;
+}
+
+/* -------------------- footer ------------------- */
+
+footer {
+  border: 1px solid black;
+  width: 600px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 7px;
+  text-align: center;
+  font-size: 12px;
 }

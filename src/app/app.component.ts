@@ -15,7 +15,7 @@ export class AppComponent {
   };
   public board = [];
   public generationLimit = 0;
-  public gameSpeed;
+  public gameSpeed = 500;
   public showDescr = true;
   public descrBtn = "Hide description";
   public showRules = true;
@@ -38,9 +38,6 @@ export class AppComponent {
     );
     this.board = this.boardService.board;
   }
-  onInputGens(generationLimit) {
-    this.generationLimit = generationLimit;
-  }
   onStart() {
     this.boardService.startGame(this.generationLimit, this.gameSpeed);
     this.board = this.boardService.board;
@@ -50,8 +47,5 @@ export class AppComponent {
   // }
   onCellClick(i, j) {
     this.boardService.toggleCell(i, j);
-  }
-  onInputSpeed(gameSpeed) {
-    this.gameSpeed = gameSpeed * 1000;
   }
 }
