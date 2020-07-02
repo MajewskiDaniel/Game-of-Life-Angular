@@ -24,7 +24,7 @@ class GameOfLife {
       [1, -1],
       [0, -1],
     ];
-    this.board$ = new Rx.BehaviorSubject();
+    this.board$ = new Rx.BehaviorSubject([]);
   }
   startTheGame() {
     if (!this.endGameFlag) {
