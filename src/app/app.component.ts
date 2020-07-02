@@ -10,27 +10,32 @@ export class AppComponent {
   title = "Game of Life";
 
   public boardDimensions = {
-    height: 0,
-    width: 0,
+    height: 30,
+    width: 30,
   };
   public board = [];
   public generationLimit = 0;
   public gameSpeed;
+  public showDescr = true;
+  public descrBtn = "Hide description";
+  public showRules = true;
+  public rulesBtn = "Hide rules";
 
   constructor(private boardService: BoardService) {}
   ngOnInit() {}
-  onInputWidth(value: number) {
-    this.boardDimensions.width = value;
+  onDescriptionBtn() {
+    this.showDescr = !this.showDescr;
+    this.descrBtn = this.showDescr ? "Hide description" : "Show description";
   }
-  onInputHeight(value: number) {
-    this.boardDimensions.height = value;
+  onRulesBtn() {
+    this.showRules = !this.showRules;
+    this.rulesBtn = this.showRules ? "Hide rules" : "Show rules";
   }
   onGenerate() {
     this.boardService.createBoard(
       this.boardDimensions.height,
       this.boardDimensions.width
     );
-
     this.board = this.boardService.board;
   }
   onInputGens(generationLimit) {

@@ -4,7 +4,7 @@
     <h2>by Daniel Majewski</h2>
     <div class="description">
       <h3>Game description</h3>
-      <span
+      <span *ngIf="showDescr"
         >Conway's Game of Life, also known as the Game of Life or simply Life,
         is a cellular automaton devised by the British mathematician John Horton
         Conway in 1970. It is the best-known example of a cellular automaton.
@@ -14,12 +14,14 @@
         and observing how it evolves.</span
       >
       <br />
-      <button class="descrBtn">Hide description</button>
+      <button class="descrBtn" (click)="onDescriptionBtn()">
+        {{ descrBtn }}
+      </button>
     </div>
   </div>
   <div class="gameRules">
     <h3>Game rules</h3>
-    <span
+    <span *ngIf="showRules"
       >The universe of the Game of Life is an infinite two-dimensional
       orthogonal grid of square cells, each of which is in one of two possible
       states, live or dead. Every cell interacts with its eight neighbours,
@@ -38,24 +40,16 @@
       pure function of the one before.) The rules continue to be applied
       repeatedly to create further generations.</span
     >
-    <button class="rulesBtn">Hide rules</button>
+    <button class="rulesBtn" (click)="onRulesBtn()">{{ rulesBtn }}</button>
   </div>
   <div class="boardGenerator">
-    <div class="boardHeight">
-      <span>Board width:</span>
-      <input
-        type="number"
-        value="30"
-        (input)="onInputHeight($event.target.value)"
-      />
-    </div>
     <div class="boardWidth">
-      <span>Board height:</span>
-      <input
-        type="number"
-        value="30"
-        (input)="onInputWidth($event.target.value)"
-      />
+      <span>Set board width:</span>
+      <input type="number" [(ngModel)]="boardDimensions.width" />
+    </div>
+    <div class="boardHeight">
+      <span>Set board height:</span>
+      <input type="number" [(ngModel)]="boardDimensions.height" />
     </div>
     <button class="genBtn" (click)="onGenerate()">
       Generate board
