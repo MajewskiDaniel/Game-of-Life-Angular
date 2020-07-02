@@ -38,8 +38,11 @@ export class BoardService {
     const game = new Game(this.board, this.livingCells, generationLimit);
     setTimeout(() => {
       game.startTheGame();
-      game.board$.subscribe((board) => (this.board = board));
     }, gameSpeed);
+    game.board$.subscribe((board) => {
+      this.board = board;
+      console.log("after sub", this.board);
+    });
   }
   // endGame() {}
 }
