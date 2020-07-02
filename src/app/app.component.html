@@ -22,7 +22,7 @@
     Generate board
   </button>
 </div>
-<div class="gameInputs" *ngIf="board.length > 0">
+<div class="gameInputs" *ngIf="this.board.length != 0">
   <span>Number of generations (0 to infinite):</span>
   <input
     class="numOfGens"
