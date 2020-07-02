@@ -20,18 +20,9 @@ export class BoardService {
 
   toggleCell(i, j) {
     this.board[i][j] = this.board[i][j] === 0 ? 1 : 0;
-
-    // const idx = this.livingCells.findIndex(
-    //   (cell) => cell[0] === i && cell[1] === j
-    // );
-    // if (idx === -1) {
-    //   this.livingCells.push([i, j]);
-    // } else {
-    //   this.livingCells.splice(idx, 1);
-    // }
   }
 
-  startGame(generationLimit: number) {
+  startGame(generationLimit: number, gameSpeed: number) {
     const getLivingCellsFromBoard = (board) => {
       for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board[i].length; j++) {
@@ -44,7 +35,13 @@ export class BoardService {
     };
     getLivingCellsFromBoard(this.board);
 
-    const game = new Game(this.board, this.livingCells, generationLimit);
+    const game = new Game(
+      this.board,
+      this.livingCells,
+      generationLimit,
+      gameSpeed
+    );
+
     game.startTheGame();
     game.board$
       .pipe

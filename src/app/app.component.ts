@@ -14,7 +14,8 @@ export class AppComponent {
     width: 0,
   };
   public board = [];
-  public numOfGenerations = 0;
+  public generationLimit = 0;
+  public gameSpeed;
 
   constructor(private boardService: BoardService) {}
   ngOnInit() {}
@@ -32,14 +33,17 @@ export class AppComponent {
 
     this.board = this.boardService.board;
   }
-  onInputGens(numOfGenerations) {
-    this.numOfGenerations = numOfGenerations;
+  onInputGens(generationLimit) {
+    this.generationLimit = generationLimit;
   }
   onPlay() {
-    this.boardService.startGame(this.numOfGenerations);
+    this.boardService.startGame(this.generationLimit, this.gameSpeed);
     this.board = this.boardService.gameBoard;
   }
   onCellClick(i, j) {
     this.boardService.toggleCell(i, j);
+  }
+  onInputSpeed(gameSpeed) {
+    this.gameSpeed = gameSpeed * 1000;
   }
 }

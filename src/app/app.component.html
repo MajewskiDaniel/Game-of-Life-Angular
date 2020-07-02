@@ -23,12 +23,21 @@
   </button>
 </div>
 <div class="gameInputs" *ngIf="board.length > 0">
-  <!-- <span>Number of generations:</span> -->
-  <!-- <input
+  <span>Number of generations (0 to infinite):</span>
+  <input
     class="numOfGens"
     type="number"
+    value="0"
     (input)="onInputGens($event.target.value)"
-  /> -->
+  />
+  <br />
+  <span>Single generation length in seconds:</span>
+  <input
+    class="gameSpeed"
+    type="number"
+    value="0.5"
+    (input)="onInputSpeed($event.target.value)"
+  />
   <br />
   <span>Set living cells on the board and press play</span>
   <button class="play" (click)="onPlay()">Play</button>

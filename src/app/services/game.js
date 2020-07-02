@@ -3,7 +3,7 @@
 const Rx = require("rxjs");
 
 class GameOfLife {
-  constructor(board, initialCells, generationLimit) {
+  constructor(board, initialCells, generationLimit, gameSpeed = 500) {
     this.board = board;
     this.initialCells = initialCells;
     this.initialFlag = true;
@@ -24,6 +24,7 @@ class GameOfLife {
       [1, -1],
       [0, -1],
     ];
+    this.gameSpeed = gameSpeed;
     this.board$ = new Rx.BehaviorSubject();
   }
   startTheGame() {
@@ -36,13 +37,15 @@ class GameOfLife {
       this.letThemDie();
       this.refreshLivingCells();
       this.board$.next(this.board);
+      console.log(this.endGameFlag);
+      console.log(this.generationLimit);
       console.log(`Generation: ${this.numberOfGenerations}`);
-      // console.table(this.board);
+      this.isTheGameOver();
       setTimeout(() => {
-        if (!this.isTheGameOver()) {
+        if (!this.endGameFlag) {
           this.startTheGame();
         }
-      }, 500);
+      }, this.gameSpeed);
     } else this.endGame();
   }
   enliveInitialCells() {
@@ -139,13 +142,19 @@ class GameOfLife {
     this.survivingCells.length = 0;
   }
   isTheGameOver() {
-    return (
-      this.numberOfGenerations === this.generationLimit ||
+    if (
+      this.numberOfGenerations == this.generationLimit ||
       this.livingCells.length === 0
-    );
+    ) {
+      this.endGameFlag = true;
+    }
+    // return (
+    //   this.numberOfGenerations === this.generationLimit ||
+    //   this.livingCells.length === 0
+    // );
   }
   endGame() {
-    this.endGameFlag = true;
+    console.log(`Thank you for playing Game of Life`);
   }
 }
 
