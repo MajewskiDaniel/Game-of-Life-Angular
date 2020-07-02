@@ -1,3 +1,10 @@
+This is an early alpha version of my Game of Life app
+You can see it here:
+https://game-of-life-angular.vercel.app/
+i'm still working on it and a lot of things need to be done
+
+----------------------------------------------------------------------------------------------------------------------------
+
 # GameOfLifeAngular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.5.
