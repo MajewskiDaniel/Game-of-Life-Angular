@@ -37,8 +37,6 @@ class GameOfLife {
       this.letThemDie();
       this.refreshLivingCells();
       this.board$.next(this.board);
-      console.log(this.endGameFlag);
-      console.log(this.generationLimit);
       console.log(`Generation: ${this.numberOfGenerations}`);
       this.isTheGameOver();
       setTimeout(() => {

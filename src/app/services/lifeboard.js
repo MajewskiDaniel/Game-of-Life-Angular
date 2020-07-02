@@ -1,7 +1,7 @@
 "use strict";
 
 class LifeBoard {
-  constructor(width, height = width) {
+  constructor(width = 25, height = 25) {
     this.width = width;
     this.height = height;
     this.board = [];

@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import * as Board from "./lifeboard";
 import * as Game from "./game";
-import { tap } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -9,10 +8,9 @@ import { tap } from "rxjs/operators";
 export class BoardService {
   public board;
   private livingCells: any[];
-  public gameBoard;
 
   constructor() {}
-  createBoard(height = 10, width = 10) {
+  createBoard(height: number, width: number) {
     const board = new Board(height, width);
     this.board = board.createBoard();
     this.livingCells = [];
@@ -22,7 +20,7 @@ export class BoardService {
     this.board[i][j] = this.board[i][j] === 0 ? 1 : 0;
   }
 
-  startGame(generationLimit: number, gameSpeed: number) {
+  startGame(generationLimit: number, gameSpeed: number = 500) {
     const getLivingCellsFromBoard = (board) => {
       for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board[i].length; j++) {
@@ -43,12 +41,7 @@ export class BoardService {
     );
 
     game.startTheGame();
-    game.board$
-      .pipe
-      //delay(500),
-      // tap((board) => console.table(board))
-      ()
-      .subscribe((board) => (this.gameBoard = board));
+    game.board$.subscribe((board) => (this.board = board));
   }
   // endGame() {}
 }

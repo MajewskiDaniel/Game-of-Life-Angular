@@ -1,56 +1,101 @@
-<div class="home">
-  <h1>Game of Life</h1>
-</div>
-<div class="boardGenerator">
-  <div>
-    <span>Board height:</span>
-    <input
-      class="boardHeight"
-      type="number"
-      (input)="onInputHeight($event.target.value)"
-    />
+<div class="wrapper">
+  <div class="home">
+    <h1>Game of Life v0.7</h1>
+    <h2>by Daniel Majewski</h2>
+    <div class="description">
+      <h3>Game description</h3>
+      <span
+        >Conway's Game of Life, also known as the Game of Life or simply Life,
+        is a cellular automaton devised by the British mathematician John Horton
+        Conway in 1970. It is the best-known example of a cellular automaton.
+        The "game" is actually a zero-player game, meaning that its evolution is
+        determined by its initial state, needing no input from human players.
+        One interacts with the Game of Life by creating an initial configuration
+        and observing how it evolves.</span
+      >
+      <br />
+      <button class="descrBtn">Hide description</button>
+    </div>
   </div>
-  <div>
-    <span>Board width:</span>
-    <input
-      class="boardWidth"
-      type="number"
-      (input)="onInputWidth($event.target.value)"
-    />
+  <div class="gameRules">
+    <h3>Game rules</h3>
+    <span
+      >The universe of the Game of Life is an infinite two-dimensional
+      orthogonal grid of square cells, each of which is in one of two possible
+      states, live or dead. Every cell interacts with its eight neighbours,
+      which are the cells that are directly horizontally, vertically, or
+      diagonally adjacent. At each step in time, the following transitions
+      occur: <br />- Any live cell with fewer than two live neighbours dies
+      (referred to as underpopulation or exposure). <br />- Any live cell with
+      more than three live neighbours dies (referred to as overpopulation or
+      overcrowding). <br />- Any live cell with two or three live neighbours
+      lives, unchanged, to the next generation. <br />- Any dead cell with
+      exactly three live neighbours will come to life. <br />The initial pattern
+      constitutes the 'seed' of the system. The first generation is created by
+      applying the above rules simultaneously to every cell in the seed — births
+      and deaths happen simultaneously, and the discrete moment at which this
+      happens is sometimes called a tick. (In other words, each generation is a
+      pure function of the one before.) The rules continue to be applied
+      repeatedly to create further generations.</span
+    >
+    <button class="rulesBtn">Hide rules</button>
   </div>
-  <button class="generateButton" (click)="onGenerate()">
-    Generate board
-  </button>
-</div>
-<div class="gameInputs" *ngIf="board.length > 0">
-  <span>Number of generations (0 to infinite):</span>
-  <input
-    class="numOfGens"
-    type="number"
-    value="0"
-    (input)="onInputGens($event.target.value)"
-  />
-  <br />
-  <span>Single generation length in seconds:</span>
-  <input
-    class="gameSpeed"
-    type="number"
-    value="0.5"
-    (input)="onInputSpeed($event.target.value)"
-  />
-  <br />
-  <span>Set living cells on the board and press Start</span>
-  <button class="play" (click)="onStart()">Start</button>
-  <button class="pause" (click)="onPause()">Pause</button>
-  <button class="reset" (click)="onGenerate()">Reset</button>
-</div>
-<div class="board" *ngIf="board.length > 0">
-  <div class="row" *ngFor="let row of board; let i = index">
-    <div
-      class="column"
-      [class.living]="column === 1"
-      *ngFor="let column of row; let j = index"
-      (click)="onCellClick(i, j)"
-    ></div>
+  <div class="boardGenerator">
+    <div class="boardHeight">
+      <span>Board width:</span>
+      <input
+        type="number"
+        value="30"
+        (input)="onInputHeight($event.target.value)"
+      />
+    </div>
+    <div class="boardWidth">
+      <span>Board height:</span>
+      <input
+        type="number"
+        value="30"
+        (input)="onInputWidth($event.target.value)"
+      />
+    </div>
+    <button class="genBtn" (click)="onGenerate()">
+      Generate board
+    </button>
+  </div>
+  <div class="gameInputs" *ngIf="board.length > 0">
+    <div class="numOfGens">
+      <span>Number of generations (0 to infinite):</span>
+      <input
+        type="number"
+        value="0"
+        (input)="onInputGens($event.target.value)"
+      />
+      <br />
+    </div>
+    <div class="gameSpeed">
+      <span>Single generation length in seconds:</span>
+      <input
+        type="number"
+        value="0.5"
+        (input)="onInputSpeed($event.target.value)"
+      />
+      <br />
+    </div>
+    <div class="startSection">
+      <span>Set living cells on the board and press Start</span>
+      <button class="play" (click)="onStart()">Start</button>
+      <!-- <button class="pause" (click)="onPause()">Pause</button> -->
+      <button class="reset" (click)="onGenerate()">Reset</button>
+    </div>
+  </div>
+
+  <div class="board" *ngIf="board.length > 0">
+    <div class="row" *ngFor="let row of board; let i = index">
+      <div
+        class="column"
+        [class.living]="column === 1"
+        *ngFor="let column of row; let j = index"
+        (click)="onCellClick(i, j)"
+      ></div>
+    </div>
   </div>
 </div>

@@ -38,11 +38,11 @@ export class AppComponent {
   }
   onStart() {
     this.boardService.startGame(this.generationLimit, this.gameSpeed);
-    this.board = this.boardService.gameBoard;
+    this.board = this.boardService.board;
   }
-  onPause() {
-    // TODO: pause code
-  }
+  // onPause() {
+  //   // TODO: pause code
+  // }
   onCellClick(i, j) {
     this.boardService.toggleCell(i, j);
   }
