@@ -36,9 +36,12 @@ export class AppComponent {
   onInputGens(generationLimit) {
     this.generationLimit = generationLimit;
   }
-  onPlay() {
+  onStart() {
     this.boardService.startGame(this.generationLimit, this.gameSpeed);
     this.board = this.boardService.gameBoard;
+  }
+  onPause() {
+    // TODO: pause code
   }
   onCellClick(i, j) {
     this.boardService.toggleCell(i, j);
